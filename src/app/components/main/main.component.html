@@ -1,0 +1,176 @@
+<div class="lg:grid lg:grid-cols-12">
+  <div
+    class="bg-gray-900 px-2 text-center pt-8 h-full col-start-1 col-end-3 lg:fixed"
+  >
+    <div class="relative mx-auto lg:px-6">
+      <form class="border-b-4 border-cyan-600 flex flex-col">
+        <p class="text-white text-xl font-bold">Upload image:</p>
+        <input
+          class="mt-4 block mb-5 w-full text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          type="file"
+          accept="image/*"
+          (change)="onFileChanged($event)"
+        />
+      </form>
+
+      <div class="mt-4 flex flex-col">
+        <p class="text-white text-xl font-bold mb-4">Select animation:</p>
+
+        <div class="flex lg:flex-col flex-shrink flex-wrap">
+          <div class="w-1/2">
+            <button
+              (click)="animate('Bounce')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'Bounce'
+                }"
+              >
+                Bounce
+              </span>
+            </button>
+          </div>
+          <div class="w-1/2">
+            <button
+              (click)="animate('Shake')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'Shake'
+                }"
+              >
+                Shake
+              </span>
+            </button>
+          </div>
+          <div class="w-1/2">
+            <button
+              (click)="animate('Fade')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'Fade'
+                }"
+              >
+                Fade
+              </span>
+            </button>
+          </div>
+          <div class="w-1/2">
+            <button
+              (click)="animate('FadeDown')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'FadeDown'
+                }"
+              >
+                FadeDown
+              </span>
+            </button>
+          </div>
+          <div class="w-1/2">
+            <button
+              (click)="animate('Flip')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'Flip'
+                }"
+              >
+                Flip
+              </span>
+            </button>
+          </div>
+          <div class="w-1/2">
+            <button
+              (click)="animate('Slide')"
+              class="mb-4 p-1 rounded-3xl from-rose-400 via-fuchsia-500 to-indigo-500 bg-gradient-to-r w-28 2xl:w-48 2xl:h-14"
+            >
+              <span
+                class="block text-white px-4 py-3 font-semibold rounded-full transition focus:outline-none bg-gray-700 border-gray-60"
+                [ngClass]="{
+                  'bg-transparent': selectedAnimation === 'Slide'
+                }"
+              >
+                Slide
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-col">
+        <p class="text-white text-xl font-bold mb-4">Download html:</p>
+        <button
+          class="mt-4 block mb-5 w-full h-12 text-xs rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400"
+          (click)="downloadAsHtml()"
+        >
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-header class="col-start-3 col-end-13"></app-header>
+  <div
+    class="h-full col-start-3 col-end-13 bg-slate-300 flex flex-wrap flex-shrink"
+  >
+    <div class="m-auto">
+      <div *ngIf="isError">
+        <p class="text-red-900 text-xl font-bold">Error: select image file</p>
+      </div>
+
+      <div *ngIf="isErrorAnimation" class="flex">
+        <p class="text-red-900 text-xl font-bold m-auto align-middle">
+          Error: select image before using animation
+        </p>
+      </div>
+
+      <div *ngIf="!imageChangedEvent" class="h-screen"></div>
+      <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="false"
+        [aspectRatio]="1 / 1"
+        format="jpeg"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()"
+        *ngIf="imageChangedEvent"
+      >
+      </image-cropper>
+      <img
+        class="object-contain"
+        [src]="croppedImage"
+        alt="croppedImage"
+        *ngIf="croppedImage"
+        [@bounceInDown]="animationBounceState"
+        [@headShake]="animationShakeState"
+        [@fadeIn]="animationFadeInState"
+        [@fadeInDown]="animationFadeDownState"
+        [@flipInX]="animationFlipState"
+        [@slideInRight]="animationSlideState"
+        id="image"
+      />
+
+      <img
+        class="object-contain invisible"
+        [src]="croppedImage"
+        alt="croppedImage"
+        *ngIf="croppedImage"
+      />
+    </div>
+  </div>
+  <app-footer class="lg:col-start-3 lg:col-end-13"></app-footer>
+</div>
