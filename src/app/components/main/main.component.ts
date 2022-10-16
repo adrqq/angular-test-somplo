@@ -12,7 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
   animations: [
     bounceInDownAnimation(),
     headShakeAnimation(),
@@ -27,10 +26,10 @@ export class MainComponent {
   imageChangedEvent: any = '';
   croppedImage: any = '';
   isError: boolean = false;
+  isErrorAnimation: boolean = false;
   animationBounceState: boolean;
   animationShakeState: boolean;
   animationFadeInState: boolean;
-  isErrorAnimation: boolean = false;
   animationFadeDownState: boolean = false;
   animationFlipState: boolean = false;
   animationSlideState: boolean = false;
@@ -309,19 +308,5 @@ export class MainComponent {
   imageCropped(event: any) {
     this.croppedImage = event.base64;
   }
-
-  imageLoaded() {
-    // show cropper
-  }
-
-  cropperReady() {
-    // cropper ready
-  }
-
-  loadImageFailed() {
-    // show message
-  }
 }
 
-// animated bounceInDown (bounce)
-// shake (shake)
