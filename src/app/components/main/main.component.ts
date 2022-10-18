@@ -33,7 +33,7 @@ export class MainComponent {
   animationFadeDownState: boolean = false;
   animationFlipState: boolean = false;
   animationSlideState: boolean = false;
-  animationClasses: string = 'animated bounceInDown';
+  animationClasses: string = '';
   selectedAnimation: string = '';
 
   downloadAsHtml() {
