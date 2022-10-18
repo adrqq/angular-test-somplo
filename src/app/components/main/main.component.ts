@@ -51,9 +51,9 @@ export class MainComponent {
     <style>
     body {
       margin: 0;
-        padding: 0;
-        background-color: #fff;
-      }
+      padding: 0;
+      background-color: #E0FFFF;
+    }
     .container {
       display: flex;
       justify-content: center;
@@ -62,11 +62,7 @@ export class MainComponent {
     }
 
     .animatedBounce {
-      background-image: url(/css/images/logo.png);
       background-repeat: repeat;
-      background-position: left top;
-      padding-top:95px;
-      margin-bottom:60px;
       animation-duration: 1s;
       animation-fill-mode: both;
     }
@@ -95,7 +91,6 @@ export class MainComponent {
     .shake {
       animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
       transform: translate3d(0, 0, 0);
-      backface-visibility: hidden;
       perspective: 1000px;
     }
 
@@ -118,9 +113,6 @@ export class MainComponent {
     }
 
     .fadeIn {
-      margin-top: 25px;
-      font-size: 21px;
-      text-align: center;
       animation: fadein 1s;
     }
 
