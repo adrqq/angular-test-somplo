@@ -42,181 +42,168 @@ export class MainComponent {
     } else {
       this.isError = false;
       const html = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-          }
-          .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-          }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+      margin: 0;
+        padding: 0;
+        background-color: #fff;
+      }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-          .animatedBounce {
-            background-image: url(/css/images/logo.png);
-            background-repeat: repeat;
-            background-position: left top;
-            padding-top:95px;
-            margin-bottom:60px;
-            -webkit-animation-duration: 5s;
-            animation-duration: 1s;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-          }
+    .animatedBounce {
+      background-image: url(/css/images/logo.png);
+      background-repeat: repeat;
+      background-position: left top;
+      padding-top:95px;
+      margin-bottom:60px;
+      animation-duration: 1s;
+      animation-fill-mode: both;
+    }
 
-          @-webkit-keyframes bounceInDown {
-            0% {
-               opacity: 0;
-               -webkit-transform: translateY(-2000px);
-            }
-            60% {
-               opacity: 1;
-               -webkit-transform: translateY(30px);
-            }
-            80% {
-               -webkit-transform: translateY(-10px);
-            }
-            100% {
-               -webkit-transform: translateY(0);
-            }
-          }
+    @keyframes bounceInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-2000px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(30px);
+      }
+      80% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
 
-          @keyframes bounceInDown {
-            0% {
-               opacity: 0;
-               transform: translateY(-2000px);
-            }
-            60% {
-               opacity: 1;
-               transform: translateY(30px);
-            }
-            80% {
-               transform: translateY(-10px);
-            }
-            100% {
-               transform: translateY(0);
-            }
-          }
+    .bounceInDown {
+      animation-name: bounceInDown;
+    }
 
-          .bounceInDown {
-            -webkit-animation-name: bounceInDown;
-            animation-name: bounceInDown;
-          }
+    .shake {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
 
-          .shake {
-            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-          }
+    @keyframes shake {
+      10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
 
-          @keyframes shake {
-            10%, 90% {
-              transform: translate3d(-1px, 0, 0);
-            }
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
 
-            20%, 80% {
-              transform: translate3d(2px, 0, 0);
-            }
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
 
-            30%, 50%, 70% {
-              transform: translate3d(-4px, 0, 0);
-            }
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+    }
 
-            40%, 60% {
-              transform: translate3d(4px, 0, 0);
-            }
-          }
+    .fadeIn {
+      margin-top: 25px;
+      font-size: 21px;
+      text-align: center;
+      animation: fadein 1s;
+    }
 
-          .fadeIn {
-            margin-top: 25px;
-            font-size: 21px;
-            text-align: center;
-            animation: fadein 1s;
-          }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
 
-          @keyframes fadein {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-          }
+    .fadeDown {
+      animation: fadeDown 0.5s ease-in both;
+    }
 
-          .fadeDown {
-            animation: fadeDown 0.5s ease-in both;
-          }
+    @keyframes fadeDown {
+	    from {
+		    opacity: 0;
+		    transform: translate3d(0, -1000px, 0);
+	    }
+	    to {
+		    opacity: 1;
+		    transform: translate3d(0, 0, 0);
+	    }
+    }
 
-          @keyframes fadeDown {
-	          from {
-		          opacity: 0;
-		          transform: translate3d(0, -1000px, 0);
-	          }
-	          to {
-		          opacity: 1;
-		          transform: translate3d(0, 0, 0);
-	          }
-          }
+    .slide {
+      animation: slide 1s ease-in-out;
+      animation-delay: 10ms;
+    }
 
-          .slide {
-            animation: slide 1s ease-in-out;
-            animation-delay: 10ms;
-          }
+    @keyframes slide {
+      0% {
+        transform: translateX(1000px);
+      }
 
-          @keyframes slide {
-            0% {
-              transform: translateX(1000px);
-            }
-            100% {
-              transform: translateX(0px);
-            }
-          }
+      100% {
+        transform: translateX(0px);
+      }
+    }
 
-          .animatedFlipInX {
-            animation-duration: 1s;
-            animation-fill-mode: both;
-          }
+    .animatedFlipInX {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+    }
 
-          @keyframes flipInX {
-            0% {
-               transform: perspective(400px) rotateX(90deg);
-               opacity: 0;
-            }
-            40% {
-               transform: perspective(400px) rotateX(-10deg);
-            }
-            70% {
-               transform: perspective(400px) rotateX(10deg);
-            }
-            100% {
-               transform: perspective(400px) rotateX(0deg);
-               opacity: 1;
-            }
-          }
+    @keyframes flipInX {
+      0% {
+        transform: perspective(400px) rotateX(90deg);
+        opacity: 0;
+      }
 
-          .flipInX {
-            backface-visibility: visible !important;
-            animation-name: flipInX;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <img class="${this.animationClasses}" src="${this.croppedImage}" alt="image">
-        </div>
-      </body>
-      </html>
+      40% {
+        transform: perspective(400px) rotateX(-10deg);
+      }
+
+      70% {
+        transform: perspective(400px) rotateX(10deg);
+      }
+
+      100% {
+        transform: perspective(400px) rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    .flipInX {
+      backface-visibility: visible !important;
+      animation-name: flipInX;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="${this.animationClasses}" src="${this.croppedImage}" alt="image">
+    </div>
+  </body>
+</html>
       `;
       const blob = new Blob([html], { type: 'text/html' });
+      console.log(blob)
       const url = window.URL.createObjectURL(blob);
+      console.log(url)
       const a = document.createElement('a');
       a.href = url;
+      console.log(a)
       a.download = 'image.html';
       a.click();
     }
