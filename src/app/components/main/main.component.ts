@@ -190,12 +190,12 @@ export class MainComponent {
 </html>
       `;
       const blob = new Blob([html], { type: 'text/html' });
-      console.log(blob)
+      console.log(blob);
       const url = window.URL.createObjectURL(blob);
-      console.log(url)
+      console.log(url);
       const a = document.createElement('a');
       a.href = url;
-      console.log(a)
+      console.log(a);
       a.download = 'image.html';
       a.click();
     }
@@ -288,4 +288,3 @@ export class MainComponent {
     this.croppedImage = event.base64;
   }
 }
-
