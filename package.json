@@ -1,13 +1,15 @@
 {
-  "name": "angular-test-sompo",
+  "name": "angular_img-animation-app",
   "version": "0.0.0",
+  "homepage": "https://adrqq.github.io/angular_img-animation-app/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "gh-pages -d build"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +44,7 @@
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^4.0.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
